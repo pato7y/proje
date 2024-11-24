@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yetkili Paneli</title>
+</head>
+<body>
+    <h1>Yetkili Paneli</h1>
+    <table border="1">
+        <tr>
+            <th>Çalışan</th>
+            <th>Başlangıç Tarihi</th>
+            <th>Bitiş Tarihi</th>
+            <th>Durum</th>
+            <th>Onayla</th>
+            <th>Reddet</th>
+        </tr>
+        {% for leave in leave_requests %}
+        <tr>
+            <td>{{ leave.employee.name }}</td>
+            <td>{{ leave.start_date }}</td>
+            <td>{{ leave.end_date }}</td>
+            <td>{{ leave.status }}</td>
+            <td><a href="{% url 'approve_leave' leave.id %}">Onayla</a></td>
+            <td><a href="{% url 'reject_leave' leave.id %}">Reddet</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
